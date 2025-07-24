@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import {devices} from "../../utils/constantes";
+import { devices } from "../../utils/constantes";
 
 const StyledError = styled.span`
   display: block;
@@ -22,7 +22,7 @@ const StyledError = styled.span`
   }
 `;
 
-const ErrorComponent = ({errorname}) => {
+const ErrorComponent = ({ errorname }) => {
   if (!errorname) return null;
   return <StyledError className="error">{errorname}</StyledError>;
 };

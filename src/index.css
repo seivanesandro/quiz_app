@@ -8,9 +8,8 @@
   scrollbar-color: #ffffff #222222 !important;
 }
 
-
-*::selection{
-  background: rgba(108, 99, 255, 0.20) !important;
+*::selection {
+  background: rgba(108, 99, 255, 0.2) !important;
   color: #fff !important;
 }
 
@@ -32,8 +31,7 @@ code {
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-
-section.quiz{
+section.quiz {
   margin: 5rem auto 10rem auto;
 }
 

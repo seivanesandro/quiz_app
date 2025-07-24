@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 //import PropTypes from 'prop-types'
-import InputFormComponent from '../common/InputFormComponent';
-import LabelComponent from '../common/LabelComponent';
-import styled from 'styled-components';
-import { devices } from '../../utils/constantes';
-import DropDownComponent from '../common/dropDown';
-import StyledError from '../error/ErrorComponent';
+import InputFormComponent from "../common/InputFormComponent";
+import LabelComponent from "../common/LabelComponent";
+import styled from "styled-components";
+import { devices } from "../../utils/constantes";
+import DropDownComponent from "../common/dropDown";
+import StyledError from "../error/ErrorComponent";
 
 //TODO: adicionar efeito smooth/scale .
 
@@ -58,7 +58,7 @@ const ContainerInputs = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  justify-content: center;  
+  justify-content: center;
   gap: 0.5rem;
 `;
 
@@ -70,8 +70,7 @@ const ContaineComponents = styled.div`
   margin: 0%.5 auto;
 `;
 
-
-const FormComponent = props => {
+const FormComponent = (props) => {
   return (
     <>
       <FormSetupComponent action="" className="form-control" id="setup-form">
@@ -93,9 +92,9 @@ const FormComponent = props => {
             namedropdown="category"
             iddropdown="category"
             optionsdropdown={[
-              {value: "sports", name: "Sports"},
-              {value: "history", name: "History"},
-              {value: "politics", name: "Politics"},
+              { value: "sports", name: "Sports" },
+              { value: "history", name: "History" },
+              { value: "politics", name: "Politics" },
             ]}
           />
         </ContainerInputs>
@@ -106,9 +105,9 @@ const FormComponent = props => {
             namedropdown="difficulty"
             iddropdown="difficulty"
             optionsdropdown={[
-              {value: "easy", name: "Easy"},
-              {value: "medium", name: "Medium"},
-              {value: "hard", name: "Hard"},
+              { value: "easy", name: "Easy" },
+              { value: "medium", name: "Medium" },
+              { value: "hard", name: "Hard" },
             ]}
           />
         </ContainerInputs>
@@ -118,16 +117,13 @@ const FormComponent = props => {
         </ContaineComponents>
 
         <ContaineComponents className="container-inputs">
-          <InputFormComponent
-            typeinput="submit"
-            valueinput="Start Quiz"
-          />
+          <InputFormComponent typeinput="submit" valueinput="Start Quiz" />
         </ContaineComponents>
       </FormSetupComponent>
     </>
   );
-}
+};
 
-FormComponent.propTypes = {}
+FormComponent.propTypes = {};
 
-export default FormComponent
+export default FormComponent;

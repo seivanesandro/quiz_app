@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
 
 const StyledLabel = styled.label`
   display: block;
@@ -17,7 +17,7 @@ const StyledLabel = styled.label`
   }
 `;
 
-const LabelComponent = ({labelfor, textlabel}) => {
+const LabelComponent = ({ labelfor, textlabel }) => {
   return (
     <>
       <StyledLabel htmlFor={labelfor} className="label-component">
@@ -32,4 +32,4 @@ LabelComponent.propTypes = {
   textlabel: PropTypes.string.isRequired,
 };
 
-export default LabelComponent
+export default LabelComponent;

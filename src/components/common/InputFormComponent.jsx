@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components';
+import React from "react";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
 
 const StyledInput = styled.input`
   padding: 8px 14px;
@@ -19,7 +19,7 @@ const StyledInput = styled.input`
     margin: 0;
   }
 
-  ${({typeinput}) =>
+  ${({ typeinput }) =>
     typeinput === "text" &&
     css`
       width: 100%;
@@ -39,7 +39,7 @@ const StyledInput = styled.input`
       }
     `}
 
-  ${({typeinput}) =>
+  ${({ typeinput }) =>
     typeinput === "number" &&
     css`
       width: 100%;
@@ -59,7 +59,7 @@ const StyledInput = styled.input`
       }
     `}
 
-  ${({typeinput}) =>
+  ${({ typeinput }) =>
     typeinput === "submit" &&
     css`
       width: auto;
@@ -81,7 +81,7 @@ const StyledInput = styled.input`
 const InputFormComponent = ({
   typeinput = "text",
   placeholderinput,
-  nameInput, 
+  nameInput,
   idinput,
   valueinput,
   onChangeInput,
@@ -106,9 +106,9 @@ const InputFormComponent = ({
 InputFormComponent.propTypes = {
   typeinput: PropTypes.string.isRequired,
   nameinput: PropTypes.string.isRequired,
-  placeholderinput:PropTypes.string.isRequired,
+  placeholderinput: PropTypes.string.isRequired,
   idinput: PropTypes.string.isRequired,
-  valueinput:PropTypes.string.isRequired,
+  valueinput: PropTypes.string.isRequired,
 };
 
 export default InputFormComponent;

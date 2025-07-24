@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import {devices} from "../../utils/constantes";
+import { devices } from "../../utils/constantes";
 
 const StyledSelect = styled.select`
   border: 2px solid transparent;
@@ -75,7 +75,7 @@ DropDownComponent.propTypes = {
     PropTypes.shape({
       value: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
-    })
+    }),
   ).isRequired,
   placeholder: PropTypes.string,
 };
