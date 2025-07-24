@@ -7,7 +7,7 @@ import logo from "../../images/logo_big1.png";
 function NavBarComponent() {
   return (
     <>
-      <Navbar bg="dark" variant="dark" style={{ marginBottom: "8rem" }}>
+      <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand
             href="#home"
