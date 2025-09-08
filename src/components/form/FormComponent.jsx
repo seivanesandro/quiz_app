@@ -2,12 +2,23 @@ import React from "react";
 //import PropTypes from 'prop-types'
 import InputFormComponent from "../common/InputFormComponent";
 import LabelComponent from "../common/LabelComponent";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { devices } from "../../utils/constantes";
 import DropDownComponent from "../common/dropDown";
 import StyledError from "../error/ErrorComponent";
 
-//TODO: adicionar efeito smooth/scale .
+const Show = keyframes`
+    0%{
+        opacity:0;
+    }
+    50%{
+        opacity:0.5;
+    }
+
+    100%{
+        opacity:1;
+    }
+`;
 
 const FormSetupComponent = styled.form`
   width: 50vw;
@@ -25,6 +36,7 @@ const FormSetupComponent = styled.form`
   gap: 3rem;
   color: #fff;
   box-shadow: 0 0.1rem 0.6rem rgba(108, 99, 255, 0.48) !important;
+  animation: ${Show} 1.5s ease-out;
 
   @media only screen and( ${devices.portatilL}) {
     width: 84vw !important;
