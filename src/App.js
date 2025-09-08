@@ -2,6 +2,7 @@ import NavBarComponent from "./components/navbar/NavBarComponent";
 import FormComponent from "./components/form/FormComponent";
 import bgimg from "./images/bg_rbg.png";
 import styled from "styled-components";
+import ModalComponent from "./components/modal/ModalComponent";
 
 const MainContainer = styled.div`
   &.main {
@@ -25,7 +26,7 @@ function App() {
       <NavBarComponent />
       <MainContainer className="main">
         <section className="quiz quiz-small">
-          <FormComponent />
+        <ModalComponent children={<FormComponent/>}/>
         </section>
       </MainContainer>
     </div>
