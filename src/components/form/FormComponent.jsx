@@ -47,6 +47,8 @@ const FormSetupComponent = styled.form`
 
   @media only screen and (${devices.tablet}) {
     width: 80vw !important;
+    min-width: 5rem !important;
+    max-width: 92% !important;
   }
 
   @media only screen and (${devices.iphone14}) {

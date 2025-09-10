@@ -1,8 +1,11 @@
 import NavBarComponent from "./components/navbar/NavBarComponent";
-import FormComponent from "./components/form/FormComponent";
+//import FormComponent from "./components/form/FormComponent";
 import bgimg from "./images/bg_rbg.png";
 import styled from "styled-components";
 import ModalComponent from "./components/modal/ModalComponent";
+//import Button from "./components/common/Button";
+//import Loading from "./components/load/Loading";
+//import Button from "./components/common/Button";
 
 const MainContainer = styled.div`
   &.main {
@@ -22,14 +25,14 @@ const MainContainer = styled.div`
 
 function App() {
   return (
-    <div className="App">
-      <NavBarComponent />
-      <MainContainer className="main">
-        <section className="quiz quiz-small">
-        <ModalComponent children={<FormComponent/>}/>
-        </section>
-      </MainContainer>
-    </div>
+    <>
+      <div className="App">
+        <NavBarComponent />
+        <MainContainer className="main">
+          <section className="quiz quiz-small"><ModalComponent /></section>
+        </MainContainer>
+      </div>
+    </>
   );
 }
 

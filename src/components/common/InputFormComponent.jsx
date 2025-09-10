@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
@@ -84,13 +84,22 @@ const InputFormComponent = ({
   nameInput,
   idinput,
   valueinput,
-  onChangeInput,
+  onChangeInput
 }) => {
+
+  const inputRef = useRef(null);
+  useEffect(() => {
+    if (typeinput === "text" && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [typeinput]);
+
   return (
     <>
       <StyledInput
+        ref={inputRef}
         type={typeinput}
-        typeinput={typeinput}
+        $typeinput={typeinput}
         className="input-control"
         id={idinput}
         name={nameInput}
