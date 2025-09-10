@@ -29,7 +29,9 @@ function App() {
       <div className="App">
         <NavBarComponent />
         <MainContainer className="main">
-          <section className="quiz quiz-small"><ModalComponent /></section>
+          <section className="quiz quiz-small">
+            <ModalComponent />
+          </section>
         </MainContainer>
       </div>
     </>

@@ -1,8 +1,7 @@
-
-import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { devices } from '../../utils/constantes';
+import React from "react";
+import PropTypes from "prop-types";
+import styled from "styled-components";
+import { devices } from "../../utils/constantes";
 
 const buttonVariants = {
   next: {
@@ -35,24 +34,30 @@ const buttonVariants = {
 const StyledButton = styled.button`
   display: flex;
   flex-direction: row;
-align-items: center;
-justify-content: center;
- text-align: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   padding: 0.7rem 2.2rem;
   border-radius: 8px;
   border: none;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-  box-shadow: 0 2px 8px rgba(108,99,255,0.08);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(108, 99, 255, 0.08);
   outline: none;
-  background: ${({ $variant }) => buttonVariants[$variant]?.bg || buttonVariants.default.bg};
-  color: ${({ $variant }) => buttonVariants[$variant]?.color || buttonVariants.default.color};
+  background: ${({ $variant }) =>
+    buttonVariants[$variant]?.bg || buttonVariants.default.bg};
+  color: ${({ $variant }) =>
+    buttonVariants[$variant]?.color || buttonVariants.default.color};
 
   &:hover {
-    background: ${({ $variant }) => buttonVariants[$variant]?.hover || buttonVariants.default.hover};
-    box-shadow: 0 4px 16px rgba(108,99,255,0.15);
+    background: ${({ $variant }) =>
+      buttonVariants[$variant]?.hover || buttonVariants.default.hover};
+    box-shadow: 0 4px 16px rgba(108, 99, 255, 0.15);
   }
 
   &:active {
@@ -73,9 +78,9 @@ justify-content: center;
   }
 `;
 
-const Button = ({ children, $variant = 'default', ...rest }) => {
+const Button = ({ children, $variant = "default", ...rest }) => {
   return (
-    <StyledButton $variant={$variant} {...rest} className='shadow'>
+    <StyledButton $variant={$variant} {...rest} className="shadow">
       {children}
     </StyledButton>
   );
@@ -83,7 +88,7 @@ const Button = ({ children, $variant = 'default', ...rest }) => {
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  $variant: PropTypes.oneOf(['next', 'back', 'close', 'open', 'default']),
+  $variant: PropTypes.oneOf(["next", "back", "close", "open", "default"]),
 };
 
 export default Button;

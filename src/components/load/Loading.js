@@ -84,7 +84,6 @@ const Spinner = keyframes`
 }
 `;
 
-
 const ScaleSmooth = keyframes`
   0%, 100% { transform: scale(1);
   opacity: 1; }
@@ -99,7 +98,9 @@ const Loading = styled.div`
   border-radius: 50%;
   position: relative;
   text-indent: -9999em;
-  animation: ${Spinner} ${({ speedborder }) => speedborder}s infinite ease-out, ${ScaleSmooth} 1.4s infinite ease-in;
+  animation:
+    ${Spinner} ${({ speedborder }) => speedborder}s infinite ease-out,
+    ${ScaleSmooth} 1.4s infinite ease-in;
   transform: translateZ(1.1);
   z-index: 100;
 `;
@@ -117,6 +118,5 @@ Loading.defaultProps = {
 };
 
 export default Loading;
-
 
 //FIXME:  <Loading size="1.1" fontsize="7" speedborder="1" />;

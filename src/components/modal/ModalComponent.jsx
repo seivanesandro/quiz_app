@@ -13,7 +13,6 @@ const EffectSmooth = keyframes`
   }
 `;
 
-
 const ShowModal = keyframes`
   0% {
     transform: Scale(0);

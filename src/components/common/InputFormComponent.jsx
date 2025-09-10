@@ -84,9 +84,8 @@ const InputFormComponent = ({
   nameInput,
   idinput,
   valueinput,
-  onChangeInput
+  onChangeInput,
 }) => {
-
   const inputRef = useRef(null);
   useEffect(() => {
     if (typeinput === "text" && inputRef.current) {
