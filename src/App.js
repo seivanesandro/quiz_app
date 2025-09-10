@@ -2,7 +2,7 @@ import NavBarComponent from "./components/navbar/NavBarComponent";
 //import FormComponent from "./components/form/FormComponent";
 import bgimg from "./images/bg_rbg.png";
 import styled from "styled-components";
-import ModalComponent from "./components/modal/ModalComponent";
+//import ModalComponent from "./components/modal/ModalComponent";
 //import Button from "./components/common/Button";
 //import Loading from "./components/load/Loading";
 //import Button from "./components/common/Button";
@@ -30,7 +30,6 @@ function App() {
         <NavBarComponent />
         <MainContainer className="main">
           <section className="quiz quiz-small">
-            <ModalComponent />
           </section>
         </MainContainer>
       </div>
