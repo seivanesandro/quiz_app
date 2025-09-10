@@ -141,7 +141,7 @@ const ModalComponent = ({ children, onClose }) => {
     <>
       <ModalOverlay className="modal-overlay isOpen">
         <ModalContent onClick={onClose} className="modal-content">
-          <h3 className="modal-title">congrats!!!</h3>
+          <h3 className="modal-title">Congrats!!!</h3>
           <p>Your answered N Questions Correctly </p>
           <ButtonContainer>
             <Button $variant="close">play Again</Button>
