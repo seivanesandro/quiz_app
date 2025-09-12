@@ -8,6 +8,21 @@ import Button from "./components/common/Button";
 //import Loading from "./components/load/Loading";
 //import Button from "./components/common/Button";
 
+
+
+const Show = keyframes`
+    0%{
+        opacity:0;
+    }
+    50%{
+        opacity:0.5;
+    }
+
+    100%{
+        opacity:1;
+    }
+`;
+
 const TitleAnimation = keyframes`
     0%{
         color: #6c63ff;
@@ -21,19 +36,6 @@ const TitleAnimation = keyframes`
     100%{
         color: #6c63ff;
         text-shadow: 0 0 1px #fff;
-    }
-`;
-
-const Show = keyframes`
-    0%{
-        opacity:0;
-    }
-    50%{
-        opacity:0.5;
-    }
-
-    100%{
-        opacity:1;
     }
 `;
 
@@ -103,13 +105,12 @@ function App() {
             The challenge for your mind starts now
           </FirstTitle>
           <section className="quiz quiz-small">
-            <p className="correct-answers text-end">Correct answers: 3</p>
-
+            <p className="correct-answers text-end">Correct answers: 3</p>  
             <FormContainer className="container form-container">
-              <h2>Text</h2>
+              <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde expedita odio explicabo nemo nostrum nobis perspiciatis dolores temporibus, ratione, iusto quis eaque iure, laborum facilis pariatur. Aperiam voluptates temporibus blanditiis!</h2>
             </FormContainer>
             <BtnContainer className="container btn-container">
-              <Button $variant="next" children="Next Question" />
+              <Button $variant="next" children="Next Questions" />
             </BtnContainer>
           </section>
         </MainContainer>
