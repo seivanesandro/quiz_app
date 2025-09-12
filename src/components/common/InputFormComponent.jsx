@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 
 const StyledInput = styled.input`
+width:100%;
   padding: 8px 14px;
   border: 2px solid transparent;
   border-radius: 8px;
@@ -85,6 +86,7 @@ const InputFormComponent = ({
   idinput,
   valueinput,
   onChangeInput,
+  ...props
 }) => {
   const inputRef = useRef(null);
   useEffect(() => {
@@ -106,6 +108,7 @@ const InputFormComponent = ({
         onChangeInput={onChangeInput}
         value={valueinput}
         autoComplete="off"
+        {...props}
       />
     </>
   );

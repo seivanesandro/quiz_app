@@ -6,6 +6,7 @@ import styled, { keyframes } from "styled-components";
 import { devices } from "../../utils/constantes";
 import DropDownComponent from "../common/dropDown";
 import StyledError from "../error/ErrorComponent";
+import Button from "../common/Button";
 
 const Show = keyframes`
     0%{
@@ -93,10 +94,11 @@ const FormComponent = (props) => {
           <LabelComponent labelfor="amount" textlabel="Number of Questions" />
           <InputFormComponent
             typeinput="number"
-            nameinput="amount"
             idinput="amount"
             placeholderinput="Enter the number of questions"
             autoComplete="off"
+            min="1"
+            max="50"
           />
         </ContainerInputs>
 
@@ -106,9 +108,9 @@ const FormComponent = (props) => {
             namedropdown="category"
             iddropdown="category"
             optionsdropdown={[
-              { value: "sports", name: "Sports" },
-              { value: "history", name: "History" },
-              { value: "politics", name: "Politics" },
+              {value: "sports", name: "Sports"},
+              {value: "history", name: "History"},
+              {value: "politics", name: "Politics"},
             ]}
           />
         </ContainerInputs>
@@ -119,9 +121,9 @@ const FormComponent = (props) => {
             namedropdown="difficulty"
             iddropdown="difficulty"
             optionsdropdown={[
-              { value: "easy", name: "Easy" },
-              { value: "medium", name: "Medium" },
-              { value: "hard", name: "Hard" },
+              {value: "easy", name: "Easy"},
+              {value: "medium", name: "Medium"},
+              {value: "hard", name: "Hard"},
             ]}
           />
         </ContainerInputs>
@@ -131,7 +133,7 @@ const FormComponent = (props) => {
         </ContaineComponents>
 
         <ContaineComponents className="container-inputs">
-          <InputFormComponent typeinput="submit" valueinput="Start Quiz" />
+          <Button $variant="next">Start</Button>
         </ContaineComponents>
       </FormSetupComponent>
     </>

@@ -31,9 +31,26 @@ code {
     source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
-section.quiz {
-  margin: 5rem auto 10rem auto;
+.correct-answers {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  text-align: right;
+  text-transform: capitalize;
+  letter-spacing: 0.1rem;
+  color: hsl(125, 67%, 44%);
 }
+
+.container h2 {
+  margin-bottom: 2rem;
+  text-align: center;
+  line-height: 1.5;
+  text-transform: none;
+}
+
+.quiz-small {
+  max-width: 500px;
+}
+
 
 /* 
 .quiz-small {
