@@ -8,8 +8,6 @@ import Button from "./components/common/Button";
 //import Loading from "./components/load/Loading";
 //import Button from "./components/common/Button";
 
-
-
 const Show = keyframes`
     0%{
         opacity:0;
@@ -105,9 +103,14 @@ function App() {
             The challenge for your mind starts now
           </FirstTitle>
           <section className="quiz quiz-small">
-            <p className="correct-answers text-end">Correct answers: 3</p>  
+            <p className="correct-answers text-end">Correct answers: 3</p>
             <FormContainer className="container form-container">
-              <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde expedita odio explicabo nemo nostrum nobis perspiciatis dolores temporibus, ratione, iusto quis eaque iure, laborum facilis pariatur. Aperiam voluptates temporibus blanditiis!</h2>
+              <h2>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
+                expedita odio explicabo nemo nostrum nobis perspiciatis dolores
+                temporibus, ratione, iusto quis eaque iure, laborum facilis
+                pariatur. Aperiam voluptates temporibus blanditiis!
+              </h2>
             </FormContainer>
             <BtnContainer className="container btn-container">
               <Button $variant="next" children="Next Questions" />

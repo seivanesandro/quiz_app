@@ -108,9 +108,9 @@ const FormComponent = (props) => {
             namedropdown="category"
             iddropdown="category"
             optionsdropdown={[
-              {value: "sports", name: "Sports"},
-              {value: "history", name: "History"},
-              {value: "politics", name: "Politics"},
+              { value: "sports", name: "Sports" },
+              { value: "history", name: "History" },
+              { value: "politics", name: "Politics" },
             ]}
           />
         </ContainerInputs>
@@ -121,9 +121,9 @@ const FormComponent = (props) => {
             namedropdown="difficulty"
             iddropdown="difficulty"
             optionsdropdown={[
-              {value: "easy", name: "Easy"},
-              {value: "medium", name: "Medium"},
-              {value: "hard", name: "Hard"},
+              { value: "easy", name: "Easy" },
+              { value: "medium", name: "Medium" },
+              { value: "hard", name: "Hard" },
             ]}
           />
         </ContainerInputs>
