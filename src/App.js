@@ -73,19 +73,17 @@ const FirstTitle = styled.h1`
   animation: ${TitleAnimation} 2s ease-in-out infinite;
 
   @media only screen and (${devices.tablet}) {
-    font-size: 2rem;
+    font-size: 1.7rem;
   }
   @media only screen and (${devices.iphone14}) {
-    font-size: 1.8rem;
+    font-size: 17.2px !important;
   }
   @media only screen and (${devices.mobileG}) {
-    font-size: 1.8rem;
+    font-size: 17.2px !important;
   }
-  @media only screen and (${devices.mobileM}) {
-    font-size: 1.5rem;
-  }
+
   @media only screen and (${devices.mobileP}) {
-    font-size: 1.1rem;
+    font-size: 15.2px !important;
   }
 `;
 
