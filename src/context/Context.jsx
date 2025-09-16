@@ -54,8 +54,8 @@ const AppProvider = ({ children }) => {
 
   // waiting for context values
   const [waiting, setWaiting] = useState(() => {
-    const storedQuestions = loadFromStorage('quiz_questions', []);
-    const storedWaiting = loadFromStorage('quiz_waiting', true);
+    const storedQuestions = loadFromStorage("quiz_questions", []);
+    const storedWaiting = loadFromStorage("quiz_waiting", true);
     return storedQuestions.length > 0 ? false : storedWaiting;
   });
   // loading
@@ -63,46 +63,52 @@ const AppProvider = ({ children }) => {
   // error
   const [error, setError] = useState(null);
   // Questions
-  const [questions, setQuestions] = useState(() => loadFromStorage('quiz_questions', []));
+  const [questions, setQuestions] = useState(() =>
+    loadFromStorage("quiz_questions", []),
+  );
   // index
-  const [index, setIndex] = useState(() => loadFromStorage('quiz_index', 0));
+  const [index, setIndex] = useState(() => loadFromStorage("quiz_index", 0));
   // correct
-  const [correct, setCorrect] = useState(() => loadFromStorage('quiz_correct', 0));
+  const [correct, setCorrect] = useState(() =>
+    loadFromStorage("quiz_correct", 0),
+  );
   // Quiz
-  const [quiz, setQuiz] = useState(() => loadFromStorage('quiz_config', {
-    amount: 5,
-    category: "Sports",
-    difficulty: "easy",
-  }));
+  const [quiz, setQuiz] = useState(() =>
+    loadFromStorage("quiz_config", {
+      amount: 3,
+      category: "Sports",
+      difficulty: "easy",
+    }),
+  );
   // modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Salvar estados no localStorage
   useEffect(() => {
-    localStorage.setItem('quiz_waiting', JSON.stringify(waiting));
+    localStorage.setItem("quiz_waiting", JSON.stringify(waiting));
   }, [waiting]);
 
   useEffect(() => {
-    localStorage.setItem('quiz_questions', JSON.stringify(questions));
+    localStorage.setItem("quiz_questions", JSON.stringify(questions));
   }, [questions]);
 
   useEffect(() => {
-    localStorage.setItem('quiz_index', JSON.stringify(index));
+    localStorage.setItem("quiz_index", JSON.stringify(index));
   }, [index]);
 
   useEffect(() => {
-    localStorage.setItem('quiz_correct', JSON.stringify(correct));
+    localStorage.setItem("quiz_correct", JSON.stringify(correct));
   }, [correct]);
 
   useEffect(() => {
-    localStorage.setItem('quiz_config', JSON.stringify(quiz));
+    localStorage.setItem("quiz_config", JSON.stringify(quiz));
   }, [quiz]);
 
   // Função para buscar perguntas
   const fetchQuestions = async (url) => {
     //FIXME: console.log("Iniciando fetch com URL:", url);
     //FIXME: console.log("Estado atual no fetch:", { loading, waiting, error });
-    
+
     try {
       // Delay mínimo para mostrar loading
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -188,10 +194,10 @@ const AppProvider = ({ children }) => {
     setIndex(0);
     setQuestions([]);
     // Limpar localStorage
-    localStorage.removeItem('quiz_waiting');
-    localStorage.removeItem('quiz_questions');
-    localStorage.removeItem('quiz_index');
-    localStorage.removeItem('quiz_correct');
+    localStorage.removeItem("quiz_waiting");
+    localStorage.removeItem("quiz_questions");
+    localStorage.removeItem("quiz_index");
+    localStorage.removeItem("quiz_correct");
   };
 
   return (

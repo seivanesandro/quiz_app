@@ -148,15 +148,12 @@ function App() {
           <MainContainer>
             <FormComponent />
           </MainContainer>
-          )}
+        )}
 
         {/* mostra loading */}
         {loading && (
           <ContainerLoading>
-            <Loading 
-              $speedborder="0.7" 
-              $fontsize="8" 
-              $size="1.5"/>
+            <Loading $speedborder="0.7" $fontsize="8" $size="1.5" />
           </ContainerLoading>
         )}
 
@@ -168,46 +165,56 @@ function App() {
         )}
 
         {/* mostra quiz */}
-        {!waiting && !loading && !error && questions && questions.length > 0 && questions[index] && (
-          <MainContainer className="main">
-            {isModalOpen && <ModalComponent onClose={closeModal} />}
-            <p className="correct-answers text-end">
-              Correct answers: {correct}/{index}
-            </p>
-            <FormContainer className="container form-container">
-              <h2 dangerouslySetInnerHTML={{ __html: questions[index].question }}></h2>
-              <BtnContainer className="container btn-container">
-                {(() => {
-                  const { incorrect_answers, correct_answer } = questions[index];
-                  let answers = [...incorrect_answers];
-                  const tempIndex = Math.floor(Math.random() * 4);
-                  if (tempIndex === 3) {
-                    answers.push(correct_answer);
-                  } else {
-                    answers.push(answers[tempIndex]);
-                    answers[tempIndex] = correct_answer;
-                  }
-                  return answers.map((answer, idx) => (
-                    <Button
-                      key={idx}
-                      className="btn answer-btn"
-                      $variant="default"
-                      onClick={() => checkAnswers(correct_answer === answer)}
-                      dangerouslySetInnerHTML={{ __html: answer }}
-                    ></Button>
-                  ));
-                })()}
-              </BtnContainer>
-            </FormContainer>
-            <Button
-              className="btn next-question"
-              $variant="next"
-              onClick={nextQuestion}
-            >
-              Next Question
-            </Button>
-          </MainContainer>
-        )}
+        {!waiting &&
+          !loading &&
+          !error &&
+          questions &&
+          questions.length > 0 &&
+          questions[index] && (
+            <MainContainer className="main">
+              {isModalOpen && <ModalComponent onClose={closeModal} />}
+              <p className="correct-answers text-end">
+                Correct answers: {correct}/{index}
+              </p>
+              <FormContainer className="container form-container">
+                <h2
+                  dangerouslySetInnerHTML={{
+                    __html: questions[index].question,
+                  }}
+                ></h2>
+                <BtnContainer className="container btn-container">
+                  {(() => {
+                    const { incorrect_answers, correct_answer } =
+                      questions[index];
+                    let answers = [...incorrect_answers];
+                    const tempIndex = Math.floor(Math.random() * 4);
+                    if (tempIndex === 3) {
+                      answers.push(correct_answer);
+                    } else {
+                      answers.push(answers[tempIndex]);
+                      answers[tempIndex] = correct_answer;
+                    }
+                    return answers.map((answer, idx) => (
+                      <Button
+                        key={idx}
+                        className="btn answer-btn"
+                        $variant="default"
+                        onClick={() => checkAnswers(correct_answer === answer)}
+                        dangerouslySetInnerHTML={{ __html: answer }}
+                      ></Button>
+                    ));
+                  })()}
+                </BtnContainer>
+              </FormContainer>
+              <Button
+                className="btn next-question"
+                $variant="next"
+                onClick={nextQuestion}
+              >
+                Next Question
+              </Button>
+            </MainContainer>
+          )}
       </div>
     </>
   );

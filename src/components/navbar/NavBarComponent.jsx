@@ -23,7 +23,7 @@ function NavBarComponent() {
                 // Forçar refresh da página
                 window.location.reload();
               }}
-              style={{ cursor: 'pointer' }}
+              style={{ cursor: "pointer" }}
             />
           </Navbar.Brand>
         </Container>
