@@ -37,6 +37,7 @@ const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin: 0 1rem;
   padding: 0.7rem 2.2rem;
   border-radius: 8px;
   border: none;

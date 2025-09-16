@@ -2,8 +2,6 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import logo from "../../images/logo_big1.png";
 
-//TODO: add a refresh page to img
-
 function NavBarComponent() {
   return (
     <>
@@ -19,6 +17,13 @@ function NavBarComponent() {
               height="100"
               className="my-1"
               alt="React Bootstrap logo"
+              onClick={() => {
+                // Limpar localStorage antes do refresh
+                localStorage.clear();
+                // Forçar refresh da página
+                window.location.reload();
+              }}
+              style={{ cursor: 'pointer' }}
             />
           </Navbar.Brand>
         </Container>

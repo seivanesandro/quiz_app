@@ -1,12 +1,16 @@
-import NavBarComponent from "./components/navbar/NavBarComponent";
-//import FormComponent from "./components/form/FormComponent";
+import React from "react";
+import { useGlobalContext } from "./context/Context";
+
 import bgimg from "./images/bg_rbg.png";
 import styled, { keyframes } from "styled-components";
 import { devices } from "./utils/constantes";
-//import ModalComponent from "./components/modal/ModalComponent";
+
+import NavBarComponent from "./components/navbar/NavBarComponent";
 import Button from "./components/common/Button";
-//import Loading from "./components/load/Loading";
-//import Button from "./components/common/Button";
+import ModalComponent from "./components/modal/ModalComponent";
+import FormComponent from "./components/form/FormComponent";
+import Loading from "./components/load/Loading";
+import ErrorComponent from "./components/error/ErrorComponent";
 
 const Show = keyframes`
     0%{
@@ -50,6 +54,7 @@ const MainContainer = styled.div`
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
+    animation: ${Show} 2.5s linear;
   }
 
   &.main section {
@@ -84,39 +89,125 @@ const FirstTitle = styled.h1`
   }
 `;
 
-const FormContainer = styled.article``;
+const FormContainer = styled.article`
+  animation: ${Show} 2.5s ease-in;
+`;
 
 const BtnContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  gap: 1.5rem;
+
+  @media only screen and (${devices.iphone14}) {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+  @media only screen and (${devices.mobileG}) {
+    flex-direction: column !important;
+    gap: 2rem !important;
+  }
+`;
+
+const ContainerLoading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+  width: 100vw;
 `;
 
 function App() {
+  // obtem valores e funções do contexto global
+  const {
+    waiting,
+    loading,
+    error,
+    questions,
+    index,
+    correct,
+    isModalOpen,
+    nextQuestion,
+    checkAnswers,
+    closeModal,
+  } = useGlobalContext();
+
+  // FIXME: ("Estados do App:", { waiting, loading, error, questionsLength: questions?.length });
+
   return (
     <>
       <div className="App">
         <NavBarComponent />
-        <MainContainer className="main">
-          <FirstTitle className="first-title">
-            The challenge for your mind starts now
-          </FirstTitle>
-          <section className="quiz quiz-small">
-            <p className="correct-answers text-end">Correct answers: 3</p>
+        <FirstTitle className="first-title">
+          The challenge for your mind starts now
+        </FirstTitle>
+
+        {/* mostra form */}
+        {waiting && !loading && (
+          <MainContainer>
+            <FormComponent />
+          </MainContainer>
+          )}
+
+        {/* mostra loading */}
+        {loading && (
+          <ContainerLoading>
+            <Loading 
+              $speedborder="0.7" 
+              $fontsize="8" 
+              $size="1.5"/>
+          </ContainerLoading>
+        )}
+
+        {/* mostra erro */}
+        {error && !loading && (
+          <ContainerLoading>
+            <ErrorComponent errorname="Ocorreu um erro ao buscar perguntas. Tente novamente." />
+          </ContainerLoading>
+        )}
+
+        {/* mostra quiz */}
+        {!waiting && !loading && !error && questions && questions.length > 0 && questions[index] && (
+          <MainContainer className="main">
+            {isModalOpen && <ModalComponent onClose={closeModal} />}
+            <p className="correct-answers text-end">
+              Correct answers: {correct}/{index}
+            </p>
             <FormContainer className="container form-container">
-              <h2>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde
-                expedita odio explicabo nemo nostrum nobis perspiciatis dolores
-                temporibus, ratione, iusto quis eaque iure, laborum facilis
-                pariatur. Aperiam voluptates temporibus blanditiis!
-              </h2>
+              <h2 dangerouslySetInnerHTML={{ __html: questions[index].question }}></h2>
+              <BtnContainer className="container btn-container">
+                {(() => {
+                  const { incorrect_answers, correct_answer } = questions[index];
+                  let answers = [...incorrect_answers];
+                  const tempIndex = Math.floor(Math.random() * 4);
+                  if (tempIndex === 3) {
+                    answers.push(correct_answer);
+                  } else {
+                    answers.push(answers[tempIndex]);
+                    answers[tempIndex] = correct_answer;
+                  }
+                  return answers.map((answer, idx) => (
+                    <Button
+                      key={idx}
+                      className="btn answer-btn"
+                      $variant="default"
+                      onClick={() => checkAnswers(correct_answer === answer)}
+                      dangerouslySetInnerHTML={{ __html: answer }}
+                    ></Button>
+                  ));
+                })()}
+              </BtnContainer>
             </FormContainer>
-            <BtnContainer className="container btn-container">
-              <Button $variant="next" children="Next Questions" />
-            </BtnContainer>
-          </section>
-        </MainContainer>
+            <Button
+              className="btn next-question"
+              $variant="next"
+              onClick={nextQuestion}
+            >
+              Next Question
+            </Button>
+          </MainContainer>
+        )}
       </div>
     </>
   );

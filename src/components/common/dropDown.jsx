@@ -46,6 +46,7 @@ const DropDownComponent = ({
   onChangedropdown,
   optionsdropdown,
   placeholderdropdown,
+  ...rest
 }) => {
   return (
     <StyledSelect

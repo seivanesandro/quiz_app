@@ -20,8 +20,8 @@ const StyledInput = styled.input`
     margin: 0;
   }
 
-  ${({ typeinput }) =>
-    typeinput === "text" &&
+  ${({ $typeinput }) =>
+    $typeinput === "text" &&
     css`
       width: 100%;
       max-width: 100%;
@@ -40,8 +40,8 @@ const StyledInput = styled.input`
       }
     `}
 
-  ${({ typeinput }) =>
-    typeinput === "number" &&
+  ${({ $typeinput }) =>
+    $typeinput === "number" &&
     css`
       width: 100%;
       max-width: 100%;
@@ -60,8 +60,8 @@ const StyledInput = styled.input`
       }
     `}
 
-  ${({ typeinput }) =>
-    typeinput === "submit" &&
+  ${({ $typeinput }) =>
+    $typeinput === "submit" &&
     css`
       width: auto;
       min-width: 4rem;
@@ -105,7 +105,7 @@ const InputFormComponent = ({
         id={idinput}
         name={nameInput}
         placeholder={placeholderinput}
-        onChangeInput={onChangeInput}
+        onChange={onChangeInput}
         value={valueinput}
         autoComplete="off"
         {...props}
@@ -116,10 +116,11 @@ const InputFormComponent = ({
 
 InputFormComponent.propTypes = {
   typeinput: PropTypes.string.isRequired,
-  nameinput: PropTypes.string.isRequired,
+  nameInput: PropTypes.string.isRequired,
   placeholderinput: PropTypes.string.isRequired,
   idinput: PropTypes.string.isRequired,
   valueinput: PropTypes.string.isRequired,
+  onChangeInput: PropTypes.func.isRequired,
 };
 
 export default InputFormComponent;

@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 //import { devices } from "../../utils/constantes";
 import Button from "../common/Button";
 import { devices } from "../../utils/constantes";
+import { useGlobalContext } from "../../context/Context";
 
 const EffectSmooth = keyframes`
   0% {
@@ -135,15 +136,24 @@ const ButtonContainer = styled.div`
   }
 `; */
 
-const ModalComponent = ({ children, onClose }) => {
+const ModalComponent = ({ children }) => {
+  const { closeModal, correct, questions } = useGlobalContext();
   return (
     <>
       <ModalOverlay className="modal-overlay isOpen">
-        <ModalContent onClick={onClose} className="modal-content">
+        <ModalContent className="modal-content">
           <h3 className="modal-title">Congrats!!!</h3>
-          <p>Your answered N Questions Correctly </p>
+          <p>
+            Your answered{" "}
+            {questions.length > 0
+              ? ((correct / questions.length) * 100).toFixed(0)
+              : 0}
+            %
+          </p>
           <ButtonContainer>
-            <Button $variant="close">play Again</Button>
+            <Button $variant="close" onClick={closeModal}>
+              play Again
+            </Button>
           </ButtonContainer>
 
           {children}

@@ -1,24 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import styled from "styled-components";
-import Loading from "../components/load/Loading";
-import ErrorComponent from "../components/error/ErrorComponent";
 
-const ContainerLoading = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const ContainerError = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
+// tabelas de categoria
 const table = {
-  sports: 21,
-  history: 23,
-  politics: 24,
+  GeneralKnowledge: 9,
+  Books: 10,
+  Film: 11,
+  Music: 12,
+  MusicalsTheatres: 13,
+  Television: 14,
+  VideoGames: 15,
+  BoardGames: 16,
+  Nature: 17,
+  Computers: 18,
+  Mathematics: 19,
+  Mythology: 20,
+  Sports: 21,
+  Geography: 22,
+  History: 23,
+  Politics: 24,
+  Art: 25,
+  Celebrities: 26,
+  Animals: 27,
+  Vehicles: 28,
+  Comics: 29,
+  Gadgets: 30,
+  Anime: 31,
+  Cartoon: 32,
 };
 
 // api url
@@ -34,68 +42,120 @@ const AppProvider = ({ children }) => {
     const { name, value } = e.target;
     setQuiz((prevQuiz) => ({ ...prevQuiz, [name]: value }));
   };
+  // Função para carregar estado do localStorage
+  const loadFromStorage = (key, defaultValue) => {
+    try {
+      const stored = localStorage.getItem(key);
+      return stored ? JSON.parse(stored) : defaultValue;
+    } catch {
+      return defaultValue;
+    }
+  };
+
   // waiting for context values
-  const [waiting, setWaiting] = useState(true);
+  const [waiting, setWaiting] = useState(() => {
+    const storedQuestions = loadFromStorage('quiz_questions', []);
+    const storedWaiting = loadFromStorage('quiz_waiting', true);
+    return storedQuestions.length > 0 ? false : storedWaiting;
+  });
   // loading
   const [loading, setLoading] = useState(false);
   // error
   const [error, setError] = useState(null);
   // Questions
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState(() => loadFromStorage('quiz_questions', []));
   // index
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(() => loadFromStorage('quiz_index', 0));
   // correct
-  const [correct, setCorrect] = useState(0);
+  const [correct, setCorrect] = useState(() => loadFromStorage('quiz_correct', 0));
   // Quiz
-  const [quiz, setQuiz] = useState({
-    amount: 10,
-    category: "sports",
+  const [quiz, setQuiz] = useState(() => loadFromStorage('quiz_config', {
+    amount: 5,
+    category: "Sports",
     difficulty: "easy",
-  });
+  }));
   // modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Salvar estados no localStorage
+  useEffect(() => {
+    localStorage.setItem('quiz_waiting', JSON.stringify(waiting));
+  }, [waiting]);
+
+  useEffect(() => {
+    localStorage.setItem('quiz_questions', JSON.stringify(questions));
+  }, [questions]);
+
+  useEffect(() => {
+    localStorage.setItem('quiz_index', JSON.stringify(index));
+  }, [index]);
+
+  useEffect(() => {
+    localStorage.setItem('quiz_correct', JSON.stringify(correct));
+  }, [correct]);
+
+  useEffect(() => {
+    localStorage.setItem('quiz_config', JSON.stringify(quiz));
+  }, [quiz]);
+
   // Função para buscar perguntas
   const fetchQuestions = async (url) => {
-    setLoading(true);
-    setWaiting(false);
-    setError(false);
+    //FIXME: console.log("Iniciando fetch com URL:", url);
+    //FIXME: console.log("Estado atual no fetch:", { loading, waiting, error });
+    
     try {
-      const response = await axios(url);
-      if (response) {
+      // Delay mínimo para mostrar loading
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      const response = await axios.get(url);
+      //FIXME:console.log("Response recebida:", response.data);
+
+      if (response.data && response.data.results) {
         const data = response.data.results;
         if (data.length > 0) {
+          //FIXME:console.log("Perguntas encontradas:", data.length);
           setQuestions(data);
           setLoading(false);
           setWaiting(false);
           setError(false);
         } else {
+          //FIXME:console.log("Nenhuma pergunta encontrada");
           setWaiting(true);
           setLoading(false);
           setError(true);
         }
       } else {
+        //FIXME:console.log("Resposta inválida da API");
         setWaiting(true);
         setLoading(false);
         setError(true);
       }
     } catch (err) {
+      // FIXME: console.log("Erro no fetch:", err);
       setWaiting(true);
       setLoading(false);
       setError(true);
     }
   };
 
-  // Atualiza perguntas quando quiz muda
-  useEffect(() => {
-    const url = `${ApiUrl}&amount=${quiz.amount}&difficulty=${quiz.difficulty}&category=${table[quiz.category]}&type=multiple`;
-    fetchQuestions(url);
-  }, [quiz]);
-
   // Submete o formulário e obtem perguntas
   const handleSubmit = (e) => {
     e.preventDefault();
-    const url = `${ApiUrl}&amount=${quiz.amount}&difficulty=${quiz.difficulty}&category=${table[quiz.category]}&type=multiple`;
+    //FIXME:console.log("HandleSubmit chamado - Estado inicial:", { waiting, loading, error });
+
+    // Define estados imediatamente
+    setLoading(true);
+    setWaiting(false);
+    setError(false);
+    setIndex(0);
+    setCorrect(0);
+    setIsModalOpen(false);
+    setQuestions([]);
+
+    //FIXME:console.log("Estados definidos - Loading:", true, "Waiting:", false, "Error:", false);
+
+    const url = `${ApiUrl}?amount=${quiz.amount}&difficulty=${quiz.difficulty}&category=${table[quiz.category]}&type=multiple`;
+    //FIXME: console.log("URL gerada:", url);
     fetchQuestions(url);
   };
 
@@ -125,23 +185,14 @@ const AppProvider = ({ children }) => {
     setIsModalOpen(false);
     setWaiting(true);
     setCorrect(0);
+    setIndex(0);
+    setQuestions([]);
+    // Limpar localStorage
+    localStorage.removeItem('quiz_waiting');
+    localStorage.removeItem('quiz_questions');
+    localStorage.removeItem('quiz_index');
+    localStorage.removeItem('quiz_correct');
   };
-
-  if (loading) {
-    return (
-      <ContainerLoading>
-        <Loading />
-      </ContainerLoading>
-    );
-  }
-
-  if (error) {
-    return (
-      <ContainerError>
-        <ErrorComponent errorname={"Ocorreu um erro ao buscar perguntas."} />
-      </ContainerError>
-    );
-  }
 
   return (
     <AppContext.Provider

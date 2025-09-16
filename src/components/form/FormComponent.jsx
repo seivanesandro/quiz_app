@@ -7,6 +7,7 @@ import { devices } from "../../utils/constantes";
 import DropDownComponent from "../common/dropDown";
 import StyledError from "../error/ErrorComponent";
 import Button from "../common/Button";
+import { useGlobalContext } from "../../context/Context";
 
 const Show = keyframes`
     0%{
@@ -86,6 +87,7 @@ const ContaineComponents = styled.div`
 `;
 
 const FormComponent = (props) => {
+  const { quiz, handleChange, handleSubmit, error } = useGlobalContext();
   return (
     <>
       <FormSetupComponent action="" className="form-control" id="setup-form">
@@ -99,6 +101,9 @@ const FormComponent = (props) => {
             autoComplete="off"
             min="1"
             max="50"
+            nameInput="amount"
+            valueinput={quiz.amount}
+            onChangeInput={handleChange}
           />
         </ContainerInputs>
 
@@ -108,10 +113,33 @@ const FormComponent = (props) => {
             namedropdown="category"
             iddropdown="category"
             optionsdropdown={[
-              { value: "sports", name: "Sports" },
-              { value: "history", name: "History" },
-              { value: "politics", name: "Politics" },
+              { value: "GeneralKnowledge", name: "General Knowledge" },
+              { value: "Books", name: "Books" },
+              { value: "Film", name: "Film" },
+              { value: "Music", name: "Music" },
+              { value: "MusicalsTheatres", name: "Musicals & Theatres" },
+              { value: "Television", name: "Television" },
+              { value: "VideoGames", name: "Video Games" },
+              { value: "BoardGames", name: "Board Games" },
+              { value: "Nature", name: "Nature" },
+              { value: "Computers", name: "Computers" },
+              { value: "Mathematics", name: "Mathematics" },
+              { value: "Mythology", name: "Mythology" },
+              { value: "Sports", name: "Sports" },
+              { value: "Geography", name: "Geography" },
+              { value: "History", name: "History" },
+              { value: "Politics", name: "Politics" },
+              { value: "Art", name: "Art" },
+              { value: "Celebrities", name: "Celebrities" },
+              { value: "Animals", name: "Animals" },
+              { value: "Vehicles", name: "Vehicles" },
+              { value: "Comics", name: "Comics" },
+              { value: "Gadgets", name: "Gadgets" },
+              { value: "Anime", name: "Anime" },
+              { value: "Cartoon", name: "Cartoon" },
             ]}
+            valuedropdown={quiz.category}
+            onChangedropdown={handleChange}
           />
         </ContainerInputs>
 
@@ -121,19 +149,27 @@ const FormComponent = (props) => {
             namedropdown="difficulty"
             iddropdown="difficulty"
             optionsdropdown={[
-              { value: "easy", name: "Easy" },
-              { value: "medium", name: "Medium" },
-              { value: "hard", name: "Hard" },
+              { value: "easy", name: "easy" },
+              { value: "medium", name: "medium" },
+              { value: "hard", name: "hard" },
             ]}
+            valuedropdown={quiz.difficulty}
+            onChangedropdown={handleChange}
           />
         </ContainerInputs>
 
-        <ContaineComponents className="container-inputs">
-          <StyledError errorname="Error: can't generate questions, please trie again!" />
-        </ContaineComponents>
+        {error && (
+          <ContaineComponents className="container-inputs">
+            <StyledError>
+              Can't generate questions, please try again
+            </StyledError>
+          </ContaineComponents>
+        )}
 
         <ContaineComponents className="container-inputs">
-          <Button $variant="next">Start</Button>
+          <Button $variant="next" onClick={handleSubmit}>
+            Start
+          </Button>
         </ContaineComponents>
       </FormSetupComponent>
     </>

@@ -5,7 +5,7 @@
 ::before {
   box-sizing: border-box !important;
   scrollbar-width: thin !important;
-  scrollbar-color: #ffffff #222222 !important;
+  scrollbar-color: #6c63ff #222222 !important;
 }
 
 *::selection {
